@@ -13,3 +13,5 @@ GRANT USAGE ON *.* TO `javauser`@`%` IDENTIFIED BY PASSWORD '*C1B737AAD0BF1D23CC
 
 GRANT ALL PRIVILEGES ON `javauser`.* TO `javauser`@`%`;` ```
 ```
+
+then, run the import file from the resources folder [here](https://github.com/teohaik/gtgh-java-db-lesson/blob/master/src/main/resources/javauser.sql)
