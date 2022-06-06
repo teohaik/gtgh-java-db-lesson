@@ -1,6 +1,6 @@
 # gtgh-java-db-lesson
 
-## Source code from the Get Trained - Get Hired classs about Java database programmign with JDBC
+## Source code from the Get Trained - Get Hired classs about Java database programming with JDBC
 
 to use this code, first create a database ```javauser```
 
