@@ -22,6 +22,15 @@ public class Main {
 
         //searchByBirthdateExample(queryEditor);
 
+        // insertDemoDataFromConsole(queryEditor);
+
+
+        queryEditor.getUnVaccinatedWithAgeLimit(5);
+
+
+    }
+
+    private static void insertDemoDataFromConsole(QueryEditor queryEditor) {
         System.out.println("Insert Data");
         System.out.println("Type user info or 'exit' to exit, ok?");
         Scanner scanner = new Scanner(System.in);
@@ -41,7 +50,6 @@ public class Main {
             System.out.println("Continue or exit? ");
             next = scanner.next();
         }
-
     }
 
     private static void searchByBirthdateExample(QueryEditor queryEditor) {

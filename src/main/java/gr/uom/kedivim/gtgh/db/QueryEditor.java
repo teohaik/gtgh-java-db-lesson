@@ -118,7 +118,44 @@ public class QueryEditor {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
+
+
+    public void getUnVaccinatedWithAgeLimit(int minAge){
+        try(Connection cn = DBConnector.getConnectionMariaDB()){
+            LocalDate dateToCompare =
+                    LocalDate.of(LocalDate.now().getYear() - minAge,
+                            LocalDate.now().getMonth(),
+                            LocalDate.now().getDayOfMonth());
+
+
+            PreparedStatement ps = cn.prepareStatement("select p.name unvaccinated_person_name, p.surname unvaccinated_person_surname, v.expiration_date\n" +
+                    "from vaccination v\n" +
+                    "join person p on p.amka = v.insured\n" +
+                    "where expiration_date < ? and p.birthdate < ?");
+
+            ps.setObject(1, LocalDate.now());
+            ps.setObject(2, dateToCompare);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            System.out.println("Unvaccinated persons");
+
+            while(resultSet.next()){
+                String name = resultSet.getString("unvaccinated_person_name");
+                String surname = resultSet.getString("unvaccinated_person_surname");
+                LocalDate expiration_date = resultSet.getObject("expiration_date",LocalDate.class);
+
+                System.out.println(name+" "+surname+" "+expiration_date);
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 
     private List<Person> extractPersonsFromResults(PreparedStatement ps) {
         List<Person> personResults = new ArrayList<>();
